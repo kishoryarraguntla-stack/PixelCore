@@ -103,13 +103,13 @@ button{
 
 <label>Password</label>
 <input id="pwd" type="password" autocomplete="current-password">
-
 <button
-  type="button"
-  class="primary"
-  id="loginBtn"
-  style="width:100%;margin-top:16px">
-  Login
+type="button"
+class="primary"
+id="loginBtn"
+onclick="document.getElementById('loginMsg').textContent='BUTTON WORKING';"
+style="width:100%;margin-top:16px">
+Login
 </button>
 
 <div id="loginMsg" class="msg"></div>
