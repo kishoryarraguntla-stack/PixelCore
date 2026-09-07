@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PixelCore — Web Design</title>
+<meta name="description" content="PixelCore designs modern, responsive websites for businesses, creators and brands.">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#fff;line-height:1.6}a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid #eee}.navin{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:22px;font-weight:800;letter-spacing:-.6px}.logo span{color:#666}.links{display:flex;gap:26px;font-size:14px;color:#555}.links a:hover{color:#111}
+.hero{padding:112px 0 92px;text-align:center}.badge{display:inline-block;border:1px solid #ddd;border-radius:999px;padding:7px 13px;font-size:12px;color:#666;letter-spacing:.5px}h1{font-size:clamp(44px,7vw,76px);line-height:1.02;letter-spacing:-3px;max-width:900px;margin:24px auto 22px}.hero p{max-width:680px;margin:0 auto;color:#666;font-size:18px}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-block;padding:13px 20px;border-radius:12px;border:1px solid #111;font-weight:700;font-size:14px}.btn.dark{background:#111;color:#fff}.trust{margin-top:28px;color:#888;font-size:13px}
+section{padding:82px 0;border-top:1px solid #eee}.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.5px;color:#777;text-transform:uppercase}h2{font-size:42px;letter-spacing:-1.8px;line-height:1.1;margin:10px 0 36px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid #e7e7e7;border-radius:20px;padding:24px;background:#fff;transition:.25s}.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.07)}.thumb{height:190px;border-radius:14px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:20px;color:#999;font-size:13px}.thumb img{width:100%;height:100%;object-fit:cover}.card h3{margin:0 0 7px;font-size:20px}.card p{margin:0;color:#777;font-size:14px}
+.pricing .card{position:relative}.price{font-size:36px;font-weight:800;letter-spacing:-1px;margin:12px 0}.price small{font-size:13px;font-weight:500;color:#888}.contact{text-align:center;padding-bottom:100px}.contact p{max-width:620px;margin:0 auto 24px;color:#666}footer{border-top:1px solid #eee;padding:28px 0;color:#888;font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:15px}
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:760px){.links{display:none}.hero{padding:80px 0 70px}h1{letter-spacing:-2px}.grid{grid-template-columns:1fr}h2{font-size:34px}footer .wrap{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav><div class="wrap navin"><a class="logo" href="#">PixelCore<span>.in</span></a><div class="links"><a href="#services">Services</a><a href="#demos">Demos</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div></div></nav>
+
+<header class="hero reveal">
+<div class="wrap">
+<div class="badge" id="heroBadge">WEB DESIGN • PIXEL PERFECT</div>
+<h1 id="heroTitle">Websites that make your business stand out.</h1>
+<p id="heroText">Modern, responsive websites designed to look premium, feel effortless and help your business make a stronger first impression.</p>
+<div class="actions"><a class="btn dark" href="#pricing">View Plans</a><a class="btn" href="#demos">See Demo Designs</a><a class="btn" href="#contact">Start a Project</a></div>
+<div class="trust" id="trustText">Clean design · Mobile first · Fast experience</div>
+</div></header>
+
+<section id="services"><div class="wrap"><div class="eyebrow">What we do</div><h2>Web design built around your business.</h2><div class="grid">
+<div class="card reveal"><h3>Business Websites</h3><p>Professional websites that establish trust and present your business clearly.</p></div>
+<div class="card reveal"><h3>Portfolio Websites</h3><p>Clean personal-brand websites for creators, professionals and freelancers.</p></div>
+<div class="card reveal"><h3>Online Stores</h3><p>Modern storefront concepts designed for a smooth shopping experience.</p></div>
+</div></div></section>
+
+<section id="demos"><div class="wrap"><div class="eyebrow">Concept Demos</div><h2>See what your website could look like.</h2><div class="grid" id="projects"></div></div></section>
+
+<section id="pricing" class="pricing"><div class="wrap"><div class="eyebrow">Simple pricing</div><h2>Choose a plan that fits.</h2><div class="grid" id="pricingGrid"></div></div></section>
+
+<section id="contact" class="contact"><div class="wrap"><div class="eyebrow" id="contactEyebrow">Let's build</div><h2 id="contactTitle">Ready to create your website?</h2><p id="contactText">Tell us what you need and let's turn your idea into a clean, modern website.</p><a class="btn dark" id="emailBtn" href="mailto:hello@pixelcore.in">hello@pixelcore.in</a></div></section>
+
+<footer><div class="wrap"><span>© 2026 PixelCore.in</span><span>Web design only</span></div></footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBTINT8mINL77NOaxZ1iiTbbNn-bfCiglg",
+  authDomain: "pixelcore-ecc7e.firebaseapp.com",
+  projectId: "pixelcore-ecc7e",
+  storageBucket: "pixelcore-ecc7e.firebasestorage.app",
+  messagingSenderId: "930829405457",
+  appId: "1:930829405457:web:1635d5328d2f877eaf50b0",
+  measurementId: "G-LBBGKBJ1PY"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const fallback = {
+ heroBadge:"WEB DESIGN • PIXEL PERFECT",
+ heroTitle:"Websites that make your business stand out.",
+ heroText:"Modern, responsive websites designed to look premium, feel effortless and help your business make a stronger first impression.",
+ trustText:"Clean design · Mobile first · Fast experience",
+ services:[
+  {title:"Business Websites",desc:"Professional websites that establish trust and present your business clearly."},
+  {title:"Portfolio Websites",desc:"Clean personal-brand websites for creators, professionals and freelancers."},
+  {title:"Online Stores",desc:"Modern storefront concepts designed for a smooth shopping experience."}
+ ],
+ projects:[
+  {title:"Business Website",desc:"Professional company landing concept.",image:""},
+  {title:"Portfolio Website",desc:"Minimal personal brand concept.",image:""},
+  {title:"Online Store",desc:"Clean e-commerce homepage concept.",image:""}
+ ],
+ pricing:[
+  {name:"Basic",price:"₹999",desc:"A clean starter website for individuals and small businesses."},
+  {name:"Startup",price:"₹2,999",desc:"A stronger web presence for growing businesses."},
+  {name:"Premium",price:"₹5,999",desc:"A polished custom experience for brands that want more."}
+ ],
+ contact:{eyebrow:"Let's build",title:"Ready to create your website?",text:"Tell us what you need and let's turn your idea into a clean, modern website.",email:"hello@pixelcore.in"}
+};
+
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function render(c) {
+ document.getElementById("heroBadge").textContent=c.heroBadge||"";
+ document.getElementById("heroTitle").textContent=c.heroTitle||"";
+ document.getElementById("heroText").textContent=c.heroText||"";
+ document.getElementById("trustText").textContent=c.trustText||"";
+ const services=c.services||fallback.services;
+ document.querySelector("#services .grid").innerHTML=services.map(s=>`<div class="card reveal"><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("");
+ document.getElementById("projects").innerHTML=(c.projects||[]).map(p=>`<article class="card reveal"><div class="thumb">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.title)}">`:"Concept Demo"}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></article>`).join("");
+ document.getElementById("pricingGrid").innerHTML=(c.pricing||[]).map(p=>`<div class="card reveal"><h3>${esc(p.name)}</h3><div class="price">${esc(p.price)} <small>starting</small></div><p>${esc(p.desc)}</p><div style="margin-top:20px"><a class="btn" href="#contact">Get Started</a></div></div>`).join("");
+ const x=c.contact||fallback.contact;
+ document.getElementById("contactEyebrow").textContent=x.eyebrow||"";
+ document.getElementById("contactTitle").textContent=x.title||"";
+ document.getElementById("contactText").textContent=x.text||"";
+ document.getElementById("emailBtn").textContent=x.email||"";
+ document.getElementById("emailBtn").href="mailto:"+x.email;
+ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+}
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.08});
+onSnapshot(doc(db,"siteContent","home"), snap=>render(snap.exists()?snap.data():fallback), ()=>render(fallback));
+render(fallback);
+</script>
+</body>
+</html>
