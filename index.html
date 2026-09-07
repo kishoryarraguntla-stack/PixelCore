@@ -74,6 +74,12 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:#7a808a;font-size:1
   .footer-row{flex-direction:column;text-align:center}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://kppwteozuqfbdkfucmni.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_QtbgEnj_zsfR1YsVJH_vzg_Q0pBJQZG";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+</script>
 </head>
 <body>
 
@@ -91,8 +97,8 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:#7a808a;font-size:1
 <section class="hero">
   <div class="container reveal">
     <div class="badge">WEB DESIGN • PIXEL PERFECT</div>
-    <h1>Websites that make your <span class="gradient">business stand out.</span></h1>
-    <p>Modern, responsive websites designed to look premium, feel effortless and help your business make a stronger first impression.</p>
+    <h1 id="home-headline">Websites that make your <span class="gradient">business stand out.</span></h1>
+    <p id="home-subheadline">Modern, responsive websites designed to look premium, feel effortless and help your business make a stronger first impression.</p>
     <div class="actions">
       <a class="btn btn-primary" href="#pricing">View Plans →</a>
       <a class="btn btn-light" href="#work">See Demo Designs</a>
@@ -124,9 +130,9 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:#7a808a;font-size:1
       <p class="sub">Straightforward plans for getting your business online.</p>
     </div>
     <div class="grid">
-      <article class="card reveal"><div class="eyebrow">Basic</div><div class="price">₹999 <small>/ website</small></div><p class="sub" style="margin:0">A clean starter website for individuals and small businesses.</p><ul class="features"><li>✓ Responsive design</li><li>✓ One-page website</li><li>✓ Contact section</li><li>✓ Basic customization</li></ul><a class="btn btn-light" style="width:100%" href="#contact">Choose Basic</a></article>
-      <article class="card featured reveal"><div class="popular">POPULAR</div><div class="eyebrow">Startup</div><div class="price">₹2,999 <small>/ website</small></div><p class="sub" style="margin:0">A stronger web presence for growing businesses.</p><ul class="features"><li>✓ Multi-section website</li><li>✓ Mobile-first design</li><li>✓ Premium UI</li><li>✓ Social & contact links</li></ul><a class="btn btn-primary" style="width:100%" href="#contact">Choose Startup</a></article>
-      <article class="card reveal"><div class="eyebrow">Premium</div><div class="price">₹5,999 <small>/ website</small></div><p class="sub" style="margin:0">A polished custom experience for brands that want more.</p><ul class="features"><li>✓ Custom premium design</li><li>✓ Advanced sections</li><li>✓ Smooth interactions</li><li>✓ Priority support</li></ul><a class="btn btn-light" style="width:100%" href="#contact">Choose Premium</a></article>
+      <article class="card reveal"><div class="eyebrow">Basic</div><div class="price"><span id="price-basic">₹999</span> <small>/ website</small></div><p class="sub" style="margin:0">A clean starter website for individuals and small businesses.</p><ul class="features"><li>✓ Responsive design</li><li>✓ One-page website</li><li>✓ Contact section</li><li>✓ Basic customization</li></ul><a class="btn btn-light" style="width:100%" href="#contact">Choose Basic</a></article>
+      <article class="card featured reveal"><div class="popular">POPULAR</div><div class="eyebrow">Startup</div><div class="price"><span id="price-startup">₹2,999</span> <small>/ website</small></div><p class="sub" style="margin:0">A stronger web presence for growing businesses.</p><ul class="features"><li>✓ Multi-section website</li><li>✓ Mobile-first design</li><li>✓ Premium UI</li><li>✓ Social & contact links</li></ul><a class="btn btn-primary" style="width:100%" href="#contact">Choose Startup</a></article>
+      <article class="card reveal"><div class="eyebrow">Premium</div><div class="price"><span id="price-premium">₹5,999</span> <small>/ website</small></div><p class="sub" style="margin:0">A polished custom experience for brands that want more.</p><ul class="features"><li>✓ Custom premium design</li><li>✓ Advanced sections</li><li>✓ Smooth interactions</li><li>✓ Priority support</li></ul><a class="btn btn-light" style="width:100%" href="#contact">Choose Premium</a></article>
     </div>
   </div>
 </section>
@@ -137,7 +143,7 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:#7a808a;font-size:1
       <div class="eyebrow">Let's build</div>
       <h2>Ready to create your website?</h2>
       <p>Tell us what you need and let's turn your idea into a clean, modern website.</p>
-      <a class="btn btn-primary" href="mailto:hello@pixelcore.in">hello@pixelcore.in ↗</a>
+      <a id="contact-email" class="btn btn-primary" href="mailto:hello@pixelcore.in">hello@pixelcore.in ↗</a>
     </div>
   </div>
 </section>
@@ -152,10 +158,23 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:#7a808a;font-size:1
 
 <script>
 const items=document.querySelectorAll('.reveal');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.12});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});},{threshold:.12});
 items.forEach(i=>observer.observe(i));
+
+async function loadPixelCoreContent(){
+ if(SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR")) return;
+ const {data}=await supabaseClient.from("site_content").select("section,content");
+ if(!data)return;
+ const m=Object.fromEntries(data.map(x=>[x.section,x.content]));
+ const h=m.home||{},p=m.pricing||{};
+ if(h.headline) document.getElementById("home-headline").textContent=h.headline;
+ if(h.subheadline) document.getElementById("home-subheadline").textContent=h.subheadline;
+ if(h.email){const a=document.getElementById("contact-email");a.textContent=h.email+" ↗";a.href="mailto:"+h.email;}
+ if(p.basic?.price) document.getElementById("price-basic").textContent=p.basic.price;
+ if(p.startup?.price) document.getElementById("price-startup").textContent=p.startup.price;
+ if(p.premium?.price) document.getElementById("price-premium").textContent=p.premium.price;
+}
+loadPixelCoreContent();
 </script>
 </body>
 </html>
