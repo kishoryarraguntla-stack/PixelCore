@@ -362,6 +362,13 @@ body.drawer-locked{overflow:hidden}
 .logout-confirm-card h3{font-size:24px;color:#172b4d;margin:0 0 9px}.logout-confirm-card p{font-size:14px;line-height:1.65;color:#66758e;margin:0 0 23px}
 .logout-confirm-actions{display:flex;gap:12px}.logout-confirm-actions button{flex:1;border-radius:11px;padding:13px 12px;font-weight:750;cursor:pointer;border:1px solid #dbe4f2}.logout-no{background:#fff;color:#34506f}.logout-yes{background:#2463c7;color:#fff;border-color:#2463c7!important}
 
+
+/* Floating WhatsApp contact button */
+.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:999;display:flex;align-items:center;gap:10px;padding:13px 18px;border-radius:999px;background:#25D366;color:#fff;font:700 14px/1 Inter,Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s}
+.whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.25)}
+.whatsapp-float svg{width:24px;height:24px;fill:currentColor;flex:none}
+@media(max-width:620px){.whatsapp-float{right:16px;bottom:18px;padding:14px;border-radius:50%;width:58px;height:58px;justify-content:center}.whatsapp-float .wa-label{display:none}.whatsapp-float svg{width:29px;height:29px}}
+
 </style>
 </head>
 <body>
@@ -432,7 +439,7 @@ body.drawer-locked{overflow:hidden}
 </div></div></section>
 <section class="legal-section" id="disclaimer"><div class="container"><div class="section-head"><span class="eyebrow">Important information</span><h2>Disclaimer</h2></div><div class="legal-card"><p>Digi Loans provides an enquiry and information interface only, unless a specific lending relationship is separately disclosed in writing. Nothing on this website is a sanction, commitment, guarantee, financial recommendation or promise of approval. Loan products, eligibility, interest rates, APR, charges, tenure, collateral and disbursal are determined by the actual lender and are subject to its checks and applicable law.</p><p>All loan examples are illustrative. Confirm the lender’s identity and regulatory status, read the Key Facts Statement (KFS), sanction letter and agreement, and assess affordability before accepting any loan. Borrowing creates repayment obligations; secured borrowing may put pledged property or assets at risk if obligations are not met.</p></div></div></section>
 <section class="legal-section" id="privacy"><div class="container"><div class="section-head"><span class="eyebrow">Your information</span><h2>Privacy notice</h2></div><div class="legal-card"><p>This page is a general privacy notice template and must be reviewed and finalized by the website owner before launch. The final notice should identify the legal entity operating the site, the personal data collected, purposes and lawful basis, service providers/lending partners, retention period, security measures, user rights, grievance contact and process for withdrawing consent.</p><p>Do not submit sensitive financial credentials through this website. Personal data should be collected only when necessary, with clear notice and appropriate consent, and handled through secure systems. Contact the site operator using verified contact details for privacy-related requests.</p></div></div></section>
-<section class="contact" id="contact"><div class="container contact-grid"><div class="contact-copy"><span class="eyebrow">Get in touch</span><h2>Let’s talk about your goals.</h2><p>Send an enquiry and our team can get back to you. Do not share OTPs, passwords, card PINs or other sensitive credentials.</p><p><strong>Email:</strong> hello@digiloans.example<br><strong>Hours:</strong> Monday–Saturday, 9:30 AM–6:00 PM</p></div><form class="contact-form" id="contactForm"><div class="form-grid">
+<section class="contact" id="contact"><div class="container contact-grid"><div class="contact-copy"><span class="eyebrow">Get in touch</span><h2>Let’s talk about your goals.</h2><p>Send an enquiry and our team can get back to you. Do not share OTPs, passwords, card PINs or other sensitive credentials.</p><p><strong>Mobile:</strong> <a href="tel:+918639155005">+91 86391 55005</a><br><strong>WhatsApp:</strong> <a href="https://wa.me/918639155005" target="_blank" rel="noopener">Chat with us</a><br><strong>Hours:</strong> Monday–Saturday, 9:30 AM–6:00 PM</p></div><form class="contact-form" id="contactForm"><div class="form-grid">
 <div class="field"><label for="name">Full name *</label><input id="name" name="name" placeholder="Enter your name" required autocomplete="name"></div>
 <div class="field"><label for="phone">Mobile number *</label><input id="phone" name="phone" type="tel" placeholder="10-digit mobile number" required pattern="[0-9+\-\s]{10,16}" autocomplete="tel"></div>
 <div class="field full"><label for="loan">Loan type *</label><select id="loan" name="loan" required><option value="">Select a loan type</option><option>Personal Loan</option><option>Business Loan</option><option>Home Loan</option><option>Vehicle Loan</option><option>Mortgage Loan</option><option>Not sure yet</option></select></div>
@@ -488,7 +495,7 @@ body.drawer-locked{overflow:hidden}
   </div>
 </div>
 
-<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"></span><span>Digi Loans</span></a><p>A simpler way to explore loan options and take informed next steps toward your financial goals.</p></div><div class="footer-col"><h3>Loan options</h3><a href="#services">Personal Loans</a><a href="#services">Business Loans</a><a href="#services">Home Loans</a><a href="#services">Vehicle Loans</a><a href="#services">Mortgage Loans</a></div><div class="footer-col"><h3>Company</h3><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#disclaimer">Disclaimer</a><a href="#privacy">Privacy Policy</a></div><div class="footer-col"><h3>Contact</h3><a href="#contact">Send an enquiry</a><a href="mailto:hello@digiloans.example">Email us</a><a href="#home">Back to top ↑</a></div></div><div class="bottom"><span>© <span id="year"></span> Digi Loans. All rights reserved.</span><span>Approval, interest rates and terms are determined by the respective lender.</span></div></div></footer>
+<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"></span><span>Digi Loans</span></a><p>A simpler way to explore loan options and take informed next steps toward your financial goals.</p></div><div class="footer-col"><h3>Loan options</h3><a href="#services">Personal Loans</a><a href="#services">Business Loans</a><a href="#services">Home Loans</a><a href="#services">Vehicle Loans</a><a href="#services">Mortgage Loans</a></div><div class="footer-col"><h3>Company</h3><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#disclaimer">Disclaimer</a><a href="#privacy">Privacy Policy</a></div><div class="footer-col"><h3>Contact</h3><a href="#contact">Send an enquiry</a><a href="tel:+918639155005">Call +91 86391 55005</a><a href="https://wa.me/918639155005" target="_blank" rel="noopener">WhatsApp us</a><a href="#home">Back to top ↑</a></div></div><div class="bottom"><span>© <span id="year"></span> Digi Loans. All rights reserved.</span><span>Approval, interest rates and terms are determined by the respective lender.</span></div></div></footer>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -792,5 +799,11 @@ openServicePage=function(loan){
 
 
 </script>
+
+<a class="whatsapp-float" href="https://wa.me/918639155005?text=Hello%20Digi%20Loans%2C%20I%20need%20more%20information." target="_blank" rel="noopener noreferrer" aria-label="Chat with Digi Loans on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3.2A12.7 12.7 0 0 0 5.1 22.38L3.3 28.8l6.58-1.73A12.8 12.8 0 1 0 16.02 3.2Zm0 23.28c-1.9 0-3.76-.51-5.38-1.48l-.39-.23-3.9 1.02 1.04-3.8-.25-.4a10.48 10.48 0 1 1 8.88 4.89Zm5.75-7.85c-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.81 1.01-.99 1.22-.18.21-.36.24-.67.08-.31-.16-1.31-.48-2.5-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.25-.61-.51-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61s1.13 3.03 1.28 3.24c.16.21 2.22 3.39 5.37 4.75.75.32 1.33.52 1.79.66.75.24 1.43.21 1.97.13.6-.09 1.84-.75 2.1-1.48.26-.73.26-1.35.18-1.48-.08-.13-.29-.21-.6-.37Z"/></svg>
+  <span class="wa-label">Chat on WhatsApp</span>
+</a>
+
 </body>
 </html>
